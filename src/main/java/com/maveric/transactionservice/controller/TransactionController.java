@@ -21,4 +21,10 @@ public class TransactionController {
         return new ResponseEntity<TransactionDto>(transactionDtoResponse, HttpStatus.OK);
     }
 
+    @GetMapping("accounts/{accountId}/transactions")
+    public ResponseEntity<List<TransactionDto>> getTransactions(@PathVariable String accountId,@RequestParam(defaultValue = "0") Integer page,
+                                                                @RequestParam(defaultValue = "10") Integer pageSize) {
+        List<TransactionDto> transactionDtoResponse = transactionService.getTransactions();
+        return new ResponseEntity<List<TransactionDto>>(transactionDtoResponse, HttpStatus.OK);
+    }
 }
