@@ -45,4 +45,10 @@ public class TransactionServiceImpl implements TransactionService{
         Transaction transactionResult=repository.findById(transactionId).orElseThrow(() -> new TransactionNotFoundException("Transaction not found"));
         return toDto(transactionResult);
     }
+
+    @Override
+    public String deleteTransaction(String transactionId) {
+        repository.deleteById(transactionId);
+        return "Transaction deleted successfully.";
+    }
 }
