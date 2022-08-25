@@ -27,4 +27,10 @@ public class TransactionController {
         List<TransactionDto> transactionDtoResponse = transactionService.getTransactions();
         return new ResponseEntity<List<TransactionDto>>(transactionDtoResponse, HttpStatus.OK);
     }
+
+    @GetMapping("accounts/{accountId}/transactions/{transactionId}")
+    public ResponseEntity<TransactionDto> getTransactionDetails(@PathVariable String accountId,@PathVariable String transactionId) {
+        TransactionDto transactionDtoResponse = transactionService.getTransactionById(transactionId);
+        return new ResponseEntity<TransactionDto>(transactionDtoResponse, HttpStatus.OK);
+    }
 }

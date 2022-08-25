@@ -39,4 +39,10 @@ public class TransactionServiceImpl implements TransactionService{
         }
         return listDto;
     }
+
+    @Override
+    public TransactionDto getTransactionById(String transactionId) {
+        Transaction transactionResult=repository.findById(transactionId).orElseThrow(() -> new TransactionNotFoundException("Transaction not found"));
+        return toDto(transactionResult);
+    }
 }
