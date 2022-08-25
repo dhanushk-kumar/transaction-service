@@ -16,5 +16,16 @@ import static com.maveric.transactionservice.util.ModelDtoTransformer.toEntity;
 
 @Service
 public class TransactionServiceImpl implements TransactionService{
+    @Autowired
+    private TransactionRepository repository;
+    @Override
+    public TransactionDto createTransaction(TransactionDto transactionDto) {
+        //Adding CreatedTime
+        transactionDto.setCreatedAt(getCurrentDateTime());
+
+        Transaction transaction = toEntity(transactionDto);
+        Transaction transactionResult = repository.save(transaction);
+        return  toDto(transactionResult);
+    }
 
 }

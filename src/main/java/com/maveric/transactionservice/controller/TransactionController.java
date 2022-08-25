@@ -13,5 +13,12 @@ import java.util.List;
 @RequestMapping("/api/v1")
 public class TransactionController {
 
+    @Autowired
+    TransactionService transactionService;
+    @PostMapping("accounts/{accountId}/transactions")
+    public ResponseEntity<TransactionDto> createTransaction(@PathVariable String accountId, @RequestBody TransactionDto transactionDto) {
+        TransactionDto transactionDtoResponse = transactionService.createTransaction(transactionDto);
+        return new ResponseEntity<TransactionDto>(transactionDtoResponse, HttpStatus.OK);
+    }
 
 }
