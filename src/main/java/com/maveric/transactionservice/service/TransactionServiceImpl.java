@@ -28,4 +28,15 @@ public class TransactionServiceImpl implements TransactionService{
         return  toDto(transactionResult);
     }
 
+    //Get transaction operation
+    @Override
+    public List<TransactionDto> getTransactions() {
+        List<Transaction> list= repository.findAll();
+        List<TransactionDto> listDto = new ArrayList<TransactionDto>(list.size());
+        for(Transaction transaction:list)
+        {
+            listDto.add(toDto(transaction));
+        }
+        return listDto;
+    }
 }
